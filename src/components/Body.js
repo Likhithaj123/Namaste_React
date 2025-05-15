@@ -13,7 +13,7 @@ const Body = () => {
 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
-  console.log("Body Rendered",listOfRestaurants);
+
   
     useEffect(() => {
       // getRestaurantList();
@@ -22,16 +22,7 @@ const Body = () => {
 
 
    
-//     const fetchData = async() => {
-     
-//       const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9979891&lng=77.55048529999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-//       const json = await data.json();
-//       console.log(json);
-//       setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-//       setFilteredRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-      
-   
-//  };
+
 const fetchData = async () => {
   try {
     const data = await fetch(
@@ -49,7 +40,7 @@ const fetchData = async () => {
       console.warn("Could not find restaurant data. Swiggy may have updated their structure.");
     }
   } catch (err) {
-    console.error("Fetch failed:", err);
+    console.error( "Fetch failed:", err);
   }
 };
 
