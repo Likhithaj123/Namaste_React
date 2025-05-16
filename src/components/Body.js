@@ -1,9 +1,10 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import RestaurantCard , {withPromotedLabel} from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../utils/useOnlineStatus";
+import UserContext from "../../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants]  = useState([]);
@@ -55,7 +56,7 @@ const fetchData = async () => {
     );
   };
   
- 
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
 
     return listOfRestaurants.length === 0 ?
@@ -72,7 +73,7 @@ const fetchData = async () => {
                 
                 />
              
-                <button className="search-btn bg-green-100 px-3 py-2 m-2 rounded-4xl border border-solid border-black"
+           <button className="search-btn bg-green-100 px-3 py-2 m-2 rounded-4xl border border-solid border-black"
                 onClick={() => {
                 const filteredRestaurant = listOfRestaurants.filter((res) =>
                  res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -80,12 +81,9 @@ const fetchData = async () => {
   setFilteredRestaurants(filteredRestaurant);
 }}>
   Search
-</button>
-
-
-
-              </div>
-              <div className="filter-btns flex m-4 p-4 bg-pink-50"> 
+            </button>
+         </div>
+     <div className="filter-btns flex m-4 p-4 bg-pink-50"> 
           <button 
              className="px-3 py-2 m-2 bg-green-100 rounded-4xl border border-solid border-black" 
              onClick={() => {
@@ -97,7 +95,16 @@ const fetchData = async () => {
              }}>
              Top Rated Restaurants
           </button>
-          </div>
+
+           <label> UserName :  </label>
+        <input type="text" className="search-box border  border-solid border-black" 
+        value={loggedInUser}
+        onChange={(e) => {
+          setUserName(e.target.value);
+        }}
+        />
+
+      </div>
            
               </div>
              <div className="flex flex-wrap justify-center">

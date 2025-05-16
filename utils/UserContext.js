@@ -1,7 +1,7 @@
-import React from 'react';
+import {createContext } from 'react';
 
 
-const UserContext = React.createContext({
+const UserContext = createContext({
     loggedInUser: "Default User",
 });
 
